@@ -39,9 +39,47 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age){
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
+
+Person.prototype.eat = function(edible) {
+  if (this.stomach.length < 10) {
+    this.stomach.push(edible);
+  }
+  else {
+    console.log(`${this.name} needs to poop`)
+  }
+}
+
+Person.prototype.poop = function() {
+  this.stomach = [];
+}
+
+Person.prototype.toString = function() {
+  return `${this.name}, ${this.age}`;
+}
+
+// const joe = new Person('Joe', 30);
+
+// joe.eat('shrimp');
+// joe.eat('onigiri');
+// joe.eat('bread');
+// joe.eat('bacon');
+// joe.eat('pretzel');
+// joe.eat('cheese');
+// joe.eat('meat on bones');
+// joe.eat('chocolate magnifying glass');
+// joe.eat('hotdog');
+// joe.eat('egg');
+// console.log(joe.toString());
+// console.log(joe.stomach);
+// joe.eat('bug');
+// joe.eat('leaves');
+// joe.poop();
+// console.log(joe.stomach);
 
 /*
   TASK 2
@@ -57,9 +95,21 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.tank = 0;
+  this.odometer = 0;
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
 }
+
+Car.prototype.fill = function(gallons) {
+  this.tank += gallons;
+}
+
+const myCar = new Car('Civic', 25);
+console.log(myCar.tank);
+myCar.fill(10);
+console.log(myCar.tank);
 
 /*
   TASK 3
@@ -68,9 +118,17 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
 }
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function () {
+  return `Playing with ${this.favoriteToy}`
+}
+
+const aBaby = new Baby('Lettuce', .2, 'bacon');
+console.log(aBaby.play());
 
 /* 
   TASK 4
