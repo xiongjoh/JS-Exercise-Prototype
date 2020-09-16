@@ -134,10 +134,10 @@ console.log(aBaby.play());
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. When 'this' is used in a global scope it will call from the window object
+  2. When 'this' is used with a dot, it will call the preceding object
+  3. When a constructor is used 'this' will refer to the instance of that object
+  4. When .call or .apply is used this is explicitly defined by the user
 */
 
 
